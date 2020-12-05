@@ -1,8 +1,10 @@
 package com.coursewebservices.webservices.config;
 
+import com.coursewebservices.webservices.entities.Category;
 import com.coursewebservices.webservices.entities.Order;
 import com.coursewebservices.webservices.entities.User;
 import com.coursewebservices.webservices.entities.enums.OrderStatus;
+import com.coursewebservices.webservices.repositories.CategoryRepository;
 import com.coursewebservices.webservices.repositories.OrderRepository;
 import com.coursewebservices.webservices.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class TestConfig implements CommandLineRunner {
     private UserRepository userRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -39,6 +43,12 @@ public class TestConfig implements CommandLineRunner {
                 OrderStatus.WAITING_PAYMENT, user1);
 
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        Category category1 = new Category(null,"Eletronics");
+        Category category2 = new Category(null,"Books");
+        Category category3 = new Category(null,"Computers");
+
+        categoryRepository.saveAll(Arrays.asList(category1,category2,category3));
 
     }
 }
